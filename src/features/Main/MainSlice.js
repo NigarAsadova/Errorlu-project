@@ -20,7 +20,6 @@ const MainSlice = createSlice({
         .addCase(getPosts.fulfilled, (state, action) =>{
             state.isLoading = false;
             state.posts = action.payload;
-            console.log(action.payload);
         })
         .addCase(getPosts.rejected,(state, action) =>{
             state.isLoading = false;
