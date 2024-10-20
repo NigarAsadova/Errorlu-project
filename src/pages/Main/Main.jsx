@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../features/Main/MainApi";
+import { getPosts, removePost } from "../../features/Main/MainApi";
 
 const Main = () => {
     const allPosts = useSelector((state) => state.posts.posts.posts);
@@ -16,8 +16,11 @@ const Main = () => {
             {
                 isLoading ? 'is loading .. ' : allPosts?.length > 0 ? (
                     <ul>
-                        {allPosts.map((post, id) => (
-                            <li key={id}>{post.title}</li>
+                        {allPosts.map((post) => (
+                            <div>
+                                <li key={post.id}>{post.title}</li>
+                                <button type="button" onClick={() => dispatch(removePost(post.id))} >Remove</button>
+                            </div>                        
                         ))}
                     </ul>
                 ) : (
